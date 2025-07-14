@@ -23,7 +23,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::get('tasks', [ApiTaskController::class, 'index']);
-Route::get('tasks-subtask', [ApiTaskController::class, 'taskChild']);
+//Route::get('tasks-subtask', [ApiTaskController::class, 'taskChild']);
 Route::post('tasks', [ApiTaskController::class, 'createTask']);
 Route::put('tasks/{id}', [ApiTaskController::class, 'updateTask']);
 Route::delete('tasks/{id}', [ApiTaskController::class, 'deleteTask']);
@@ -36,4 +36,5 @@ Route::get('sub-tasks/{task_id}', [ApiSubtaskController::class, 'getByIdTask']);
 Route::put('sub-tasks/{id}', [ApiSubtaskController::class, 'updateSubtask']);
 Route::delete('sub-tasks/{id}', [ApiSubtaskController::class, 'deleteSubtask']);
 
-Route::get('responsible', [AuthController::class, 'index']);
+// Route::get('responsible', [AuthController::class, 'index']);
+Route::get('users', [AuthController::class, 'index']);
