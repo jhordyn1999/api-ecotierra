@@ -34,7 +34,7 @@ jobs:
       - name: Move public contents to root
         run: |
           cp -r public/* ./
-          sed -i 's|__DIR__.\'/../|__DIR__.\'/|g' index.php
+          sed -i "s|__DIR__\.'\/\.\.\/|__DIR__\.'\/|g" index.php
 
       - name: Set correct permissions
         run: chmod -R 775 storage bootstrap/cache
