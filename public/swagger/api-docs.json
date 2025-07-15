@@ -1,0 +1,589 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Ecotierra",
+        "description": "Documentación de la API para la gestión de tareas y subtareas.",
+        "contact": {
+            "email": "soporte@ecotierra.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Servidor local de desarrollo"
+        }
+    ],
+    "paths": {
+        "/sub-tasks": {
+            "get": {
+                "tags": [
+                    "Subtasks"
+                ],
+                "summary": "Listar todas las subtareas",
+                "operationId": "e9fbd6a019a05dce32b2e4bec264972f",
+                "responses": {
+                    "200": {
+                        "description": "Listado de subtareas"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Subtasks"
+                ],
+                "summary": "Crear una nueva subtarea",
+                "operationId": "fedd469745d20a894377708d53aaffd6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "user_id",
+                                    "task_id",
+                                    "state",
+                                    "priority"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "task_id": {
+                                        "type": "integer"
+                                    },
+                                    "state": {
+                                        "type": "integer"
+                                    },
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "limit_date": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Subtarea creada correctamente"
+                    }
+                }
+            }
+        },
+        "/sub-tasks/{task_id}": {
+            "get": {
+                "tags": [
+                    "Subtasks"
+                ],
+                "summary": "Obtener subtareas por ID de tarea",
+                "operationId": "773af40189471e3acd424cdc213033d7",
+                "parameters": [
+                    {
+                        "name": "task_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Subtareas encontradas"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    }
+                }
+            }
+        },
+        "/sub-tasks/{id}": {
+            "put": {
+                "tags": [
+                    "Subtasks"
+                ],
+                "summary": "Actualizar una subtarea",
+                "operationId": "278dd19eaec1becb4db47d4c61cae2d9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "state": {
+                                        "type": "integer"
+                                    },
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "limit_date": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Subtarea actualizada correctamente"
+                    },
+                    "404": {
+                        "description": "Subtarea no encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Subtasks"
+                ],
+                "summary": "Eliminar una subtarea",
+                "operationId": "7292f5c512ae7d647f09e5fb5fe5f27b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Subtarea eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "Subtarea no encontrada"
+                    }
+                }
+            }
+        },
+        "/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Listar todas las tareas",
+                "operationId": "9d752840866f3ab1cd0124c58c2ffa92",
+                "responses": {
+                    "200": {
+                        "description": "Lista de tareas"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Crear una nueva tarea",
+                "operationId": "e051028543ca75c7fd97a6026e016aac",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "user_id",
+                                    "state",
+                                    "priority"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "state": {
+                                        "type": "integer"
+                                    },
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "limit_date": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tarea creada correctamente"
+                    }
+                }
+            }
+        },
+        "/taskChildAll": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Listar tareas con subtareas anidadas",
+                "operationId": "b3f2035b53f6eefca89de2210de28dc5",
+                "responses": {
+                    "200": {
+                        "description": "Lista de tareas con subtareas"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "put": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Actualizar una tarea",
+                "operationId": "f2d9e93c1a32162fb2ce4486449de5d8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "state": {
+                                        "type": "integer"
+                                    },
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "limit_date": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tarea actualizada correctamente"
+                    },
+                    "404": {
+                        "description": "Tarea no encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Eliminar una tarea",
+                "operationId": "af9eea01bd95cb6833eb051980eb9ade",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tarea eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "Tarea no encontrada"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Iniciar sesión de usuario",
+                "operationId": "2dd578ff7aba2721293dac66833b27d1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inicio de sesión exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciales inválidas"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Listar todos los usuarios",
+                "operationId": "72d65eb3ded6028ea4f16398dfe2c700",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuarios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "response": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Subtask": {
+                "title": "Subtask",
+                "required": [
+                    "id",
+                    "name",
+                    "task_id",
+                    "user_id",
+                    "priority",
+                    "state"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Subir documento"
+                    },
+                    "task_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "state": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "limit_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-31T23:59:00Z"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T15:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T15:10:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Task": {
+                "title": "Task",
+                "required": [
+                    "id",
+                    "name",
+                    "user_id",
+                    "priority",
+                    "state"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Actualizar endpoints"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "state": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "limit_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-31T23:59:00Z"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T15:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T15:10:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "required": [
+                    "id",
+                    "name",
+                    "last_name",
+                    "email"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Jhordyn"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Montenegro"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "jhordyn@example.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T15:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T15:05:00Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Subtasks",
+            "description": "Subtasks"
+        },
+        {
+            "name": "Tasks",
+            "description": "Tasks"
+        },
+        {
+            "name": "Auth",
+            "description": "Auth"
+        }
+    ]
+}
