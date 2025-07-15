@@ -6,7 +6,6 @@ on:
       - master
   workflow_dispatch:
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,18 +31,13 @@ jobs:
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: Crear carpeta Swagger UI
-        run: mkdir -p public/vendor/swagger-ui
+        run: mkdir -p public/swagger
 
       - name: Copiar assets Swagger UI
-        run: cp -R vendor/swagger-api/swagger-ui/dist/* public/vendor/swagger-ui/
+        run: cp -R vendor/swagger-api/swagger-ui/dist/* public/swagger/
 
       - name: Generar documentación Swagger
         run: php artisan l5-swagger:generate
-
-      - name: Move public contents to root
-        run: |
-          cp -r public/* ./
-          sed -i "s|__DIR__\.'\/\.\.\/|__DIR__\.'\/|g" index.php
 
       - name: Set correct permissions
         run: chmod -R 775 storage bootstrap/cache
