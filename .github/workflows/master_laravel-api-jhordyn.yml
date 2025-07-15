@@ -31,6 +31,15 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+      - name: Crear carpeta Swagger UI
+        run: mkdir -p public/vendor/swagger-ui
+
+      - name: Copiar assets Swagger UI
+        run: cp -R vendor/swagger-api/swagger-ui/dist/* public/vendor/swagger-ui/
+
+      - name: Generar documentación Swagger
+        run: php artisan l5-swagger:generate
+
       - name: Move public contents to root
         run: |
           cp -r public/* ./
