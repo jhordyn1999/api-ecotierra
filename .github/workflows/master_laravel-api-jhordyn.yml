@@ -33,8 +33,10 @@ jobs:
       - name: Generar documentación Swagger
         run: php artisan l5-swagger:generate
 
-      - name: Crear carpeta Swagger en public
-        run: mkdir -p public/swagger && cp -R vendor/swagger-api/swagger-ui/dist/* public/swagger/
+      - name: Mover documentación generada de Swagger
+        run: |
+          mkdir -p public/swagger
+          cp -R public/docs/* public/swagger/
 
       - name: Set correct permissions
         run: chmod -R 775 storage bootstrap/cache
