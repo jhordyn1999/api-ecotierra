@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "https://laravel-api-jhordyn.azurewebsites.net",
+            "url": "https://laravel-api-jhordyn.azurewebsites.net/api",
             "description": "Servidor local de produccion"
         }
     ],
