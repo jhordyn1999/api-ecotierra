@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Copiar el contenido de /home/site/wwwroot/public a /home/site/wwwroot si no existe
-cp -a /home/site/wwwroot/public/* /home/site/wwwroot
+# Copia el archivo de configuración de nginx personalizado
+cp /home/site/wwwroot/nginx.conf /etc/nginx/sites-available/default
 
-# Iniciar PHP-FPM
-php-fpm
+# Inicia PHP y Nginx
+service php8.2-fpm start
+nginx -g "daemon off;"
