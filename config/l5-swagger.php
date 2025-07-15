@@ -15,6 +15,7 @@ return [
                 'api' => 'api/documentation',
             ],
             'paths' => [
+                'docs' => public_path(), // <-- aquí estará el api-docs.json
                 /*
                  * Edit to include full URL in ui for assets
                  */
