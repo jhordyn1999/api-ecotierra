@@ -16,7 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/api/documentation', function () {
-    return file_get_contents(public_path('vendor/swagger-ui/index.html'));
-});
