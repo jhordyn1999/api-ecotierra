@@ -39,6 +39,9 @@ jobs:
       - name: Set correct permissions
         run: chmod -R 775 storage bootstrap/cache
 
+      - name: Set execution permissions for startup.sh
+        run: chmod +x startup.sh
+
       - name: Zip artifact for deployment
         run: zip -r release.zip ./*
 

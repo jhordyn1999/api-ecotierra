@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# Copiar el contenido de /home/site/wwwroot/public a /home/site/wwwroot si no existe
-cp -a /home/site/wwwroot/public/* /home/site/wwwroot
+# Reemplaza configuración de NGINX personalizada
+cp /home/site/wwwroot/default /etc/nginx/sites-available/default
 
-# Iniciar PHP-FPM
-php-fpm
+# Inicia PHP-FPM
+service php8.2-fpm start
+
+# Reinicia NGINX
+service nginx restart
+
+# Deja el contenedor corriendo (para que no muera)
+tail -f /dev/null
