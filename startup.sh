@@ -1,5 +1,7 @@
 #!/bin/bash
 
-cd /home/site/wwwroot/public
-php -S 0.0.0.0:80 index.php
+# Copiar el contenido de /home/site/wwwroot/public a /home/site/wwwroot si no existe
+cp -a /home/site/wwwroot/public/* /home/site/wwwroot
 
+# Iniciar PHP-FPM
+php-fpm
