@@ -36,7 +36,7 @@ jobs:
       - name: Mover documentación generada de Swagger
         run: |
           mkdir -p public/swagger
-          cp -R public/docs/* public/swagger/
+          cp -R storage/api-docs/* public/swagger/
 
       - name: Set correct permissions
         run: chmod -R 775 storage bootstrap/cache
